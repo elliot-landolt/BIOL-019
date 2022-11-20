@@ -64,9 +64,24 @@ paired_props <- activity_budget |>
   pivot_wider(id_cols = Dolphin.ID, names_from = bite_time_frame, 
               values_from = c(Freq.REST))
 
+paired_propsSOCIAL <- activity_budget |>
+  pivot_wider(id_cols = Dolphin.ID, names_from = bite_time_frame, 
+              values_from = c(Freq.SOCIAL))
+
+paired_propsTRAVEL <- activity_budget |>
+  pivot_wider(id_cols = Dolphin.ID, names_from = bite_time_frame, 
+              values_from = c(Freq.TRAVEL))              
+
+paired_propsFORAGE <- activity_budget |>
+  pivot_wider(id_cols = Dolphin.ID, names_from = bite_time_frame, 
+              values_from = c(Freq.FORAGE))              
 
 # Find the rest change across all dolphins remaining in the bit_dolphins table
 paired_props$rest.change <- paired_props$after - paired_props$before
+paired_propsSOCIAL$social.change <- paired_propsSOCIAL$after - paired_propsSOCIAL$before
+paired_propsTRAVEL$travel.change <- paired_propsTRAVEL$after - paired_propsTRAVEL$before
+paired_propsFORAGE$travel.change <- paired_propsFORAGE$after - paired_propsFORAGE$before
+
 
 head(paired_props)
 colMeans(paired_props[, -1])
